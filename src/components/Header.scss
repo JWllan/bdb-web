@@ -1,0 +1,66 @@
+.header {
+    height: 64px;
+    background: black;
+    width: 100%;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.header-title {
+    color: red;
+    font-size: 28px;
+    display: flex;
+    height: 100%;
+    cursor: pointer;
+
+    label {
+        cursor: pointer;
+        margin: auto 14px;
+    }
+}
+
+.header-perfil {
+    color: white;
+    font-size: 18px;
+    display: flex;
+    height: 100%;
+}
+
+.header-perfil-login {
+    margin: auto 14px;
+
+    div {
+        display: flex;
+    }
+
+    input {
+        width: 90px;
+        margin-right: 5px;
+    }
+
+    a {
+        margin-top: 3px;
+        margin-right: 55px;
+        margin-left: auto;
+        font-size: 14px;
+        color: white;
+        cursor: pointer;
+    }
+}
+
+.heade-perfil-menu {
+    margin: auto 14px;
+
+    label {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    select {
+        border: none;
+        color: white;
+        background-color: black;
+        font-size: 18px;
+    }
+}
