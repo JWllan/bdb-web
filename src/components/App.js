@@ -6,7 +6,7 @@ const bookService = new BookService();
 
 export default class App extends React.Component {
     componentDidMount = () => {
-        bookService.get().then(data => {
+        bookService.books().then(data => {
             console.log(data);
         });
     }

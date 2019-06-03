@@ -1,22 +1,39 @@
-const URL = 'http://localhost:3007/book';
+import BaseService from './baseService';
 
-export default class BookService {
-    construtor() {}
+export default class BookService extends BaseService {
+    constructor() {
+        super('book');
+    }
 
-    async get() {
+    async books() {
         const req = {
             method: 'GET',
             headers: {
-                "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVjZWVmN2ZlZDIzMTk4M2JiYzg4YzU0ZCIsImlhdCI6MTU1OTMyMTI4MywiZXhwIjoxNTU5NDA3NjgzfQ.Ntk28bkrYHkLMMaFgAX9y6ufpc3RQUUt_ruvwtdcGqk"
+                "Authorization": "Bearer " + this.token
             }
         }
-        return fetch(URL, req)
+        return fetch(this.URL, req)
         .then((res) => {
             return res.json();
         })
         .catch((err) => {
-            //error
+            // console.log(err);
         })
     }
-    
+
+    async book(bookId) {
+        const req = {
+            method: 'GET',
+            headers: {
+                "Authorization": "Bearer " + this.token
+            }
+        }
+        return fetch(this.URL + "/" + bookId, req)
+        .then((res) => {
+            return res.json();
+        })
+        .catch((err) => {
+            // console.log(err);
+        })
+    }
 }
