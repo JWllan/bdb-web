@@ -1,0 +1,25 @@
+.library {
+    height: 100%;
+    width: 100%;
+    display: flex;
+}
+
+.library-carousel {
+    width: 100%;
+    padding-top: 50px;
+}
+
+.library-carousel-base {
+    border-radius: 32px;
+    background-color: white;
+    margin: auto;
+    max-width: 600px;
+}
+
+.library-carousel-item {
+    padding: 60px;
+}
+
+.carousel-control-next-icon {
+    color: black;
+}

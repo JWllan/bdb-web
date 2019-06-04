@@ -13,16 +13,16 @@ export default class AuthService extends BaseService {
             },
             body: JSON.stringify(newUser)
         }
-        return fetch(this.URL = '/registration', req)
+        return fetch(this.URL + '/register', req)
         .then((res) => {
-            return res.json();
+            return res;
         })
         .catch((err) => {
-            // console.log(err);
+            console.log(err);
         })
     }
 
-    async registration(credentials) {
+    async authenticate(credentials) {
         const req = {
             method: 'POST',
             headers: {
@@ -30,12 +30,12 @@ export default class AuthService extends BaseService {
             },
             body: JSON.stringify(credentials)
         }
-        return fetch(this.URL = '/authenticate', req)
+        return fetch(this.URL + '/authenticate', req)
         .then((res) => {
-            return res.json();
+            return res;
         })
         .catch((err) => {
-            // console.log(err);
+            console.log(err);
         })
     }
 }

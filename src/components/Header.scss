@@ -36,7 +36,13 @@
 
     input {
         width: 90px;
-        margin-right: 5px;
+        height: 24px;
+        margin-right: 10px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 0 10px;
     }
 
     a {
@@ -49,18 +55,10 @@
     }
 }
 
-.heade-perfil-menu {
+.header-perfil-menu {
     margin: auto 14px;
+}
 
-    label {
-        margin-right: 10px;
-        font-size: 18px;
-    }
-
-    select {
-        border: none;
-        color: white;
-        background-color: black;
-        font-size: 18px;
-    }
+.header-perfil-submenu {
+    margin-right: 70px;
 }
