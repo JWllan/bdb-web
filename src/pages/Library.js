@@ -47,7 +47,7 @@ const Library = ({sBook, sUser, selectBook}) => (
                     <div className='library-book-comments'>
                         <h4>Comments</h4>
                         {sBook.book.comments.map(comment => (
-                            <div className='library-book-comments-item'>
+                            <div key={comment._id} className='library-book-comments-item'>
                                 <p>{comment.text}</p>
                                 <div>
                                     <h6>by {comment.user.name}</h6>
