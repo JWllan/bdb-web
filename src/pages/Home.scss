@@ -1,0 +1,41 @@
+.home {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: grid;
+}
+
+.home-title {
+    display: flex;
+
+    label {
+        margin: auto;
+        color: white;
+        font-size: 42px;
+    }
+}
+
+.home-subtitle {
+    display: inline-grid;
+    align-content: center;
+    margin: auto;
+
+    label {
+        color: white;
+        font-size: 28px;
+    }
+
+    button {
+        margin: 10px;
+        background-color: red;
+        border-radius: 50px;
+        border: none;
+        padding: 7px;
+        color: white;
+        font-size: 21px;
+
+        a {
+            color: black;
+        }
+    }
+}
