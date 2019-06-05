@@ -1,7 +1,6 @@
 .library {
     height: 100%;
     width: 100%;
-    display: flex;
 }
 
 .library-carousel {
@@ -18,8 +17,57 @@
 
 .library-carousel-item {
     padding: 60px;
+    min-height: 200px;
+
+    * {
+        padding: 0 10%;
+    }
+}
+
+.library-book {
+    width: 100%;
+    margin-top: 20px;
+    padding: 20px 100px;
+    background-color: black;
+    color: white;
+}
+
+.library-book-comments {
+    background-color: white;
+    padding: 20px 100px;
+
+    h4 {
+        margin-left: 40px;
+    }
+}
+
+.library-book-comments-item {
+    background-color: darkgrey;
+    padding: 10px;
+    border-radius: 21px;
+    
+    div {
+        display: flex;
+
+        h6 {
+            margin-right: 10px;
+            margin-left: auto;
+        }
+    }
+}
+
+.carousel-control-prev-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E");
 }
 
 .carousel-control-next-icon {
-    color: black;
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E");
+}
+
+.carousel-indicators li {
+    background-color: black;
+}
+
+.carousel-item {
+    min-height: 330px;
 }

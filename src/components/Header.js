@@ -5,11 +5,13 @@ import { Dropdown } from 'react-bootstrap';
 import './Header.scss';
 
 import AuthService from '../services/authService';
+import BookService from '../services/bookService';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as UserActions from '../store/actions/user';
+import * as BookActions from '../store/actions/book';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.css';
@@ -17,8 +19,9 @@ import 'bootstrap/dist/css/bootstrap.css';
 toast.configure();
 
 const authService = new AuthService();
+const bookService = new BookService();
 
-function logIn(history, user, actualUser) {
+function logIn(history, user, actualUser, allBooks) {
     let { email, password } = user;
     let credentials = { email, password };
 
@@ -27,8 +30,9 @@ function logIn(history, user, actualUser) {
             data.json().then(element => {
                 let newUser = { ...element.user, token: element.token }
                 actualUser(newUser);
+
+                bindBooks(newUser.token, allBooks, history);
             })
-            history.push('/library');
         } else {
             data.json().then(err => {
                 toast.error(err.error, {autoClose: 2000});
@@ -42,7 +46,22 @@ function logOut(history, resetUser) {
     history.push('/');
 }
 
-const Header = ({ user, actualUser, resetUser, changeEmail, changePassword }) => (
+function bindBooks(token, allBooks, history) {
+    bookService.books(token).then(data => {
+        if (data.ok) {
+            data.json().then(books => {
+                allBooks(books);
+                history.push('/library');
+            })
+        } else {
+            data.json().then(err => {
+                toast.error(err.error, {autoClose: 2000});
+            })
+        }
+    })
+}
+
+const Header = ({ user, actualUser, resetUser, changeEmail, changePassword, allBooks }) => (
     <div className="header">
         <div className="header-title">
             <label>Biblioteca do Bardo</label>
@@ -57,8 +76,8 @@ const Header = ({ user, actualUser, resetUser, changeEmail, changePassword }) =>
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item href="#/action-1">Edit perfil</Dropdown.Item>
-                                <Dropdown.Item href="#/action-2">Favorites</Dropdown.Item>
+                                <Dropdown.Item>Edit perfil</Dropdown.Item>
+                                <Dropdown.Item>Favorites</Dropdown.Item>
                                 <Route render={({ history}) => (
                                     <Dropdown.Item onClick={() => {logOut(history, resetUser)}}>Leave</Dropdown.Item>
                                 )} />
@@ -71,7 +90,7 @@ const Header = ({ user, actualUser, resetUser, changeEmail, changePassword }) =>
                             <input type="text" onChange={(e) => changeEmail(e.target.value)} placeholder="Email"></input>
                             <input type="password" onChange={(e) => changePassword(e.target.value)} placeholder="Password"></input>
                             <Route render={({ history}) => (
-                                <button onClick={() => {logIn(history, user, actualUser)}}>Enter</button>
+                                <button onClick={() => {logIn(history, user, actualUser, allBooks)}}>Enter</button>
                             )} />
                         </div>
                         <div>
@@ -84,9 +103,10 @@ const Header = ({ user, actualUser, resetUser, changeEmail, changePassword }) =>
 );
 
 const mapStateToProps = state => ({
-    user: state.user
+    user: state.user,
+    book: state.book
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({...UserActions, ...BookActions}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

@@ -5,16 +5,16 @@ export default class BookService extends BaseService {
         super('book');
     }
 
-    async books() {
+    async books(token) {
         const req = {
             method: 'GET',
             headers: {
-                "Authorization": "Bearer " + this.token
+                "Authorization": "Bearer " + token
             }
         }
         return fetch(this.URL, req)
         .then((res) => {
-            return res.json();
+            return res;
         })
         .catch((err) => {
             // console.log(err);

@@ -7,77 +7,68 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as UserActions from '../store/actions/user';
+import * as BookActions from '../store/actions/book';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import { Carousel } from 'react-bootstrap';
 
-const books = [
-    {
-      votes: [
-        {
-          _id: "5cef0354a4c4881f6ca7cb81",
-          value: 3,
-          book: "5ceefc79cdd9603998341b7c",
-          user: "5ceef7fed231983bbc88c54d",
-          createdAt: "2019-05-29T22:10:28.351Z",
-          __v: 0
-        }
-      ],
-      comments: [
-        {
-          _id: "5ceeffa4cac1593910653292",
-          text: "The power is only in your words, Bard. I was there too and Warrior didn't go to the dragon's cave alone.",
-          book: "5ceefc79cdd9603998341b7c",
-          user: "5ceef7fed231983bbc88c54d",
-          createdAt: "2019-05-29T21:54:44.999Z",
-          __v: 0
-        }
-      ],
-      favorites: [
-        {
-          _id: "5cef026691878511f04233aa",
-          book: "5ceefc79cdd9603998341b7c",
-          user: "5ceef7fed231983bbc88c54d",
-          createdAt: "2019-05-29T22:06:30.574Z",
-          __v: 0
-        }
-      ],
-      _id: "5ceefc79cdd9603998341b7c",
-      title: "Songs of the Warrior",
-      description: "Songs about the incridible adventures of the Warrior!",
-      gender: "Adventure",
-      launchedIn: "1991-08-29T00:00:00.000Z",
-      author: "Bard",
-      createdAt: "2019-05-29T21:41:13.739Z",
-      __v: 4
-    }
-  ]
+function itemClick(book, selectBook) {
+    selectBook(book);
+}
 
-const Library = ({}) => (
-    <div className='library'>
-        <div className='library-carousel'>
-            <Carousel className='library-carousel-base'>
-                {books.map(book => (
-                    <Carousel.Item key={book._id}>
-                        <div className='library-carousel-item'>
-                            <h3>{book.title}</h3>
-                            <h1>{book.author}</h1>
-                            <p>{book.description}</p>
-                        </div>
-                        <Carousel.Caption>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                ))}
-            </Carousel>
+const Library = ({sBook, sUser, selectBook}) => (
+    sUser.loged ?
+        <div className='library'>
+            <div className='library-carousel'>
+                <Carousel className='library-carousel-base'>
+                    {sBook.books.map(book => (
+                        <Carousel.Item key={book._id} onClick={() => {itemClick(book, selectBook)}}>
+                            <div className='library-carousel-item'>
+                                <h2>{book.title}</h2>
+                                <h6> - {book.author}</h6>
+                                <h4>Rate: {book.avg} stars</h4>
+                                <p>{book.description}</p>
+                            </div>
+                            <Carousel.Caption>
+                            </Carousel.Caption>
+                        </Carousel.Item>
+                    ))}
+                </Carousel>
+            </div>
+            {sBook.book !== null ?
+                <div>
+                    <div className='library-book'>
+                        <h2>{sBook.book.title}</h2>
+                        <h6> - {sBook.book.author}</h6>
+                        <h4>Rate: {sBook.book.avg} stars</h4>
+                        <p>{sBook.book.description}</p>
+                    </div>
+                    <div className='library-book-comments'>
+                        <h4>Comments</h4>
+                        {sBook.book.comments.map(comment => (
+                            <div className='library-book-comments-item'>
+                                <p>{comment.text}</p>
+                                <div>
+                                    <h6>by {comment.user.name}</h6>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            :
+                null
+            }
         </div>
-    </div>
+    :
+        <Redirect to={`/`} />
 )
 
 const mapStateToProps = state => ({
-    user: state.user
+    sUser: state.user,
+    sBook: state.book
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({...UserActions, ...BookActions}, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Library);

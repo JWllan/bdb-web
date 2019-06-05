@@ -4,8 +4,7 @@ body {
 }
 
 .main-content {
-    margin: 8px;
     min-height: calc(100vh - 80px);
     position: absolute;
-    width: calc(100vw - 16px);
+    width: 100vw;
 }
