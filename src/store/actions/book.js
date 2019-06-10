@@ -11,3 +11,17 @@ export function selectBook(book) {
         book
     }
 }
+
+export function changeComment(comment) {
+    return {
+        type: 'CHANGE_COMMENT',
+        comment
+    }
+}
+
+export function sendComment(comment) {
+    return {
+        type: 'SEND_COMMENT',
+        comment
+    }
+}

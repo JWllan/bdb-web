@@ -5,36 +5,36 @@ export default class VoteService extends BaseService {
         super('vote');
     }
 
-    async vote(value, bookId) {
+    async vote(value, bookId, token) {
         const req = {
             method: 'POST',
             headers: {
-                "Authorization": "Bearer " + this.token,
+                "Authorization": "Bearer " + token,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(value)
+            body: JSON.stringify({value})
         }
         return fetch(this.URL + "/" + bookId, req)
         .then((res) => {
-            return res.json();
+            return res;
         })
         .catch((err) => {
             // console.log(err);
         })
     }
 
-    async edite(value, voteId) {
+    async edit(value, voteId, token) {
         const req = {
             method: 'PUT',
             headers: {
-                "Authorization": "Bearer " + this.token,
+                "Authorization": "Bearer " + token,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(value)
+            body: JSON.stringify({value})
         }
         return fetch(this.URL + "/" + voteId, req)
         .then((res) => {
-            return res.json();
+            return res;
         })
         .catch((err) => {
             // console.log(err);
