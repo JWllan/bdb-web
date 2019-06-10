@@ -1,6 +1,7 @@
 const INITIAL_STATE = {
     books: [ ],
-    book: null
+    book: null,
+    comment: ''
 };
 
 export default function book(state = INITIAL_STATE, action) {
@@ -25,7 +26,10 @@ export default function book(state = INITIAL_STATE, action) {
             }
             
             book.avg = (sum > 0) ? sum / book.votes.length : 0;
-            state = { ...state, book };
+            state = { ...state, book, comment: '' };
+            break;
+        case 'CHANGE_COMMENT':
+            state = { ...state, comment: action.comment };
             break;
     }
 

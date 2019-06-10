@@ -5,18 +5,18 @@ export default class CommentaryService extends BaseService {
         super('commentary');
     }
 
-    async comment(commentary, bookId) {
+    async comment(commentary, bookId, token) {
         const req = {
             method: 'POST',
             headers: {
-                "Authorization": "Bearer " + this.token,
+                "Authorization": "Bearer " + token,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(commentary)
+            body: JSON.stringify({text: commentary})
         }
         return fetch(this.URL + "/" + bookId, req)
         .then((res) => {
-            return res.json();
+            return res;
         })
         .catch((err) => {
             // console.log(err);
