@@ -1,15 +1,14 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-import './Registration.scss';
+import { Route, Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { toast } from 'react-toastify';
 
 import AuthService from '../services/authService';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
 import * as UserActions from '../store/actions/user';
-import { ToastContainer, toast } from 'react-toastify';
+
+import './Registration.scss';
 import 'react-toastify/dist/ReactToastify.css';
 
 toast.configure();

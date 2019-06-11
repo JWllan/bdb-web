@@ -1,25 +1,24 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import { Dropdown } from 'react-bootstrap';
-
-import './Header.scss';
+import { toast } from 'react-toastify';
 
 import AuthService from '../services/authService';
 import BookService from '../services/bookService';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-
 import * as UserActions from '../store/actions/user';
 import * as BookActions from '../store/actions/book';
-import { ToastContainer, toast } from 'react-toastify';
+
+import './Header.scss';
 import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-toast.configure();
-
 const authService = new AuthService();
 const bookService = new BookService();
+
+toast.configure();
 
 function logIn(history, user, actualUser, allBooks) {
     let { email, password } = user;

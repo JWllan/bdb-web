@@ -1,9 +1,9 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { ToastContainer, toast } from 'react-toastify';
-import { Carousel, Button } from 'react-bootstrap';
+import { toast } from 'react-toastify';
+import { Carousel } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import BookService from '../services/bookService';
