@@ -1,12 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link, Redirect } from "react-router-dom";
-
-import './Home.scss';
-
+import { Link, Redirect } from "react-router-dom";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as UserActions from '../store/actions/user';
+
+import './Home.scss';
 
 const Home = ({user}) => (
     (!user.loged) ?
