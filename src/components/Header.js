@@ -60,10 +60,16 @@ function bindBooks(token, allBooks, history) {
     })
 }
 
+function goToFavs(history) {
+    history.push('/favorites');
+}
+
 const Header = ({ user, actualUser, resetUser, changeEmail, changePassword, allBooks }) => (
     <div className="header">
         <div className="header-title">
-            <label>Biblioteca do Bardo</label>
+            <Route render={({ history}) => (
+                <label onClick={() => {history.push('/')}}>Biblioteca do Bardo</label>
+            )} />
         </div>
         <div className="header-perfil">
             {
@@ -75,8 +81,9 @@ const Header = ({ user, actualUser, resetUser, changeEmail, changePassword, allB
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu>
-                                <Dropdown.Item>Edit perfil</Dropdown.Item>
-                                <Dropdown.Item>Favorites</Dropdown.Item>
+                                <Route render={({ history}) => (
+                                    <Dropdown.Item onClick={() => {goToFavs(history)}}>Favorites</Dropdown.Item>
+                                )} />
                                 <Route render={({ history}) => (
                                     <Dropdown.Item onClick={() => {logOut(history, resetUser)}}>Leave</Dropdown.Item>
                                 )} />

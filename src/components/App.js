@@ -9,6 +9,7 @@ import Home from '../pages/Home';
 import store from '../store';
 import Registration from '../pages/Registration';
 import Library from '../pages/Library';
+import Favorites from '../pages/Favorites';
 
 library.add(faStar, faHeart);
 
@@ -23,6 +24,7 @@ export default class App extends React.Component {
                             <Route path='/' exact component={Home} />
                             <Route path='/registration' component={Registration} />
                             <Route path='/library' component={Library} />
+                            <Route path='/favorites' component={Favorites} />
                         </div>
                     </Provider>
                 </div>
